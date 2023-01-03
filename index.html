@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>羊羊de衣</title>
+		<style>
+			*,body{
+				
+				
+			}
+			.div1{
+				width: 640px;
+				height: 1030px;
+				overflow: hidden;
+			}
+			.main{
+			
+			
+			min-width: 640px;
+			position: absolute;
+			left: auto;
+		z-index: 0;
+			
+			flex-wrap: wrap;
+			
+			}
+			.yun{
+			position: absolute;
+			top:2%;
+			left:-45%;
+			z-index: 1;	
+			}
+			
+			.biaotipai{
+			
+			position: relative;
+			z-index: 2;
+			left: 20%;
+			width: 120%;
+			animation: mymove 3s ;}
+			@keyframes mymove{
+				from{top:-150px;}
+				to{top:0px};
+				}
+			.picrotation{
+				position: absolute;
+		        left: -150%;
+		        top:70%;
+				border-radius: 50%;
+				z-index: 2;
+				transition: all 1s;
+				animation: picrotation 5s ease-out 0s 1;
+			}
+			@keyframes picrotation{
+				from{transform: rotate(0deg);
+
+}
+				to{transform: rotate(455deg);
+				}
+			}
+		.//picrotation:active{
+				animation-play-state: paused;
+			//}
+			.jinru{
+				font-size:30px;
+				color:#000000;
+				position: absolute;
+				z-index: 2;
+			}
+		</style>
+	</head>
+	<body>
+	
+	<img src="img/微信图片_20221102145316.jpg" class="main">
+	 <img class="biaotipai" src="img/标题牌.png"  >
+   <img src="img/云.png\" class="yun" width="250%"> 
+   
+    <img class="picrotation" width="450%" style="transform:rotate(95deg)" src="img/可转星球.png">
+   
+  
+   
+   
+	</body>
+</html>
+<script type="text/javascript">
+
+
+    var deg = 0;
+    var startX = 0;
+    var endX = 0;
+    var picrotation = document.querySelector(".picrotation");
+
+    function boxTouchStart(e) {
+        var touch = e.touches[0]; //获取触摸对象
+        startX = touch.clientX; //获取触摸坐标
+        console.log(touch);
+    }
+    function boxTouchMove(e) {
+        endX = e.touches[0].clientX; //获取触摸坐标
+    }
+    function boxTouchEnd(e) {
+        console.log(endX +"end");
+        console.log(startX +"start");
+        deg = parseInt(picrotation.style.webkitTransform.replace("rotate(", ""));
+        //向右边滑动
+        if(endX - startX > 0){
+            //console.log(deg);
+            deg = deg + 45;
+            picrotation.style.webkitTransform = "rotate(" + deg + "deg)";
+        }else{
+            deg = deg - 45;
+            console.log(deg);
+            picrotation.style.webkitTransform = "rotate(" + deg + "deg)";
+        }
+    }
+    picrotation.addEventListener("touchstart", boxTouchStart, false);
+    picrotation.addEventListener("touchmove", boxTouchMove, false);
+    picrotation.addEventListener("touchend", boxTouchEnd, false);
+</script>
